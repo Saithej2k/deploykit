@@ -1,0 +1,66 @@
+{
+  "name": "@saithej2k/deploykit",
+  "version": "0.1.0",
+  "description": "One-command AWS deployments with ECS Fargate, RDS, and CloudFront.",
+  "license": "MIT",
+  "author": "Saithej",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saithej2k/deploykit.git"
+  },
+  "homepage": "https://github.com/Saithej2k/deploykit#readme",
+  "bugs": {
+    "url": "https://github.com/Saithej2k/deploykit/issues"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "deploykit": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true});require('node:fs').rmSync('cdk.out',{recursive:true,force:true})\"",
+    "deploy": "npm run build && node dist/cli.js deploy",
+    "destroy": "npm run build && node dist/cli.js destroy",
+    "diff": "npm run build && node dist/cli.js diff",
+    "doctor": "npm run build && node dist/cli.js doctor",
+    "synth": "npm run build && node dist/cli.js synth --quiet",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm run lint && npm run test && npm run build && npm run synth",
+    "prepack": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.261.0",
+    "constructs": "10.7.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.1.1",
+    "aws-cdk": "2.1132.0",
+    "eslint": "10.7.0",
+    "prettier": "3.9.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.64.0",
+    "vitest": "4.1.10"
+  }
+}

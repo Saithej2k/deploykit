@@ -1,0 +1,45 @@
+{
+  "name": "deploykit-demo",
+  "stage": "dev",
+  "region": "us-east-1",
+  "container": {
+    "directory": "./examples/node-app",
+    "port": 3000,
+    "healthCheckPath": "/health",
+    "architecture": "X86_64",
+    "environment": {
+      "APP_NAME": "DeployKit demo"
+    }
+  },
+  "network": {
+    "maxAzs": 2,
+    "natGateways": 1,
+    "vpcCidr": "10.42.0.0/16"
+  },
+  "service": {
+    "cpu": 512,
+    "memoryMiB": 1024,
+    "desiredCount": 2,
+    "minCapacity": 2,
+    "maxCapacity": 6,
+    "cpuTargetUtilization": 60,
+    "memoryTargetUtilization": 70
+  },
+  "database": {
+    "enabled": true,
+    "engine": "postgres",
+    "name": "app",
+    "instanceType": "t4g.micro",
+    "allocatedStorageGiB": 20,
+    "maxAllocatedStorageGiB": 100
+  },
+  "cdn": {
+    "enabled": true,
+    "priceClass": "100",
+    "cache": false
+  },
+  "tags": {
+    "Project": "deploykit-demo",
+    "ManagedBy": "DeployKit"
+  }
+}

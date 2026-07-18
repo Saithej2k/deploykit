@@ -1,0 +1,39 @@
+{
+  "name": "my-service",
+  "stage": "dev",
+  "region": "us-east-1",
+  "container": {
+    "directory": "./app",
+    "port": 3000,
+    "healthCheckPath": "/health",
+    "environment": {
+      "LOG_LEVEL": "info"
+    },
+    "secrets": {
+      "API_KEY": {
+        "secretArn": "arn:aws:secretsmanager:us-east-1:123456789012:secret:my-api-key"
+      }
+    }
+  },
+  "service": {
+    "cpu": 512,
+    "memoryMiB": 1024,
+    "desiredCount": 2,
+    "minCapacity": 2,
+    "maxCapacity": 6
+  },
+  "database": {
+    "enabled": true,
+    "engine": "postgres",
+    "name": "app",
+    "instanceType": "t4g.micro"
+  },
+  "cdn": {
+    "enabled": true,
+    "cache": false
+  },
+  "tags": {
+    "Project": "my-service",
+    "Owner": "platform"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "app": "node dist/cdk-app.js",
+  "watch": {
+    "include": ["src/**", "deploykit.config.json"],
+    "exclude": ["README.md", "cdk*.json", "**/*.d.ts", "**/*.js", "node_modules"]
+  }
+}
