@@ -51,7 +51,7 @@
   "dependencies": {
     "aws-cdk-lib": "2.261.0",
     "constructs": "10.7.0",
-    "zod": "4.4.3"
+    "zod": "4.6.5"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
